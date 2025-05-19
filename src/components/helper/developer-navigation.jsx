@@ -43,8 +43,8 @@ export const developerNavigation = [
 
       {
         name: "my service",
-        code: "my-service",
-        link: "/settings/my-service",
+        code: "service",
+        link: "/settings/service",
       },
     ],
   },

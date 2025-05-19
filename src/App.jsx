@@ -7,6 +7,7 @@ import SettingsNotification from "./components/pages/developer/settings/notifica
 import DonorList from "./components/pages/developer/donor-list/DonorList";
 import ChildrenList from "./components/pages/developer/children-list/ChildrenList";
 import SettingsExperience from "./components/pages/developer/settings/experience/SettingsExperience";
+import SettingsService from "./components/pages/developer/settings/service/SettingsService";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ export default function App() {
               path="/settings/experience"
               element={<SettingsExperience />}
             />
+            <Route path="/settings/service" element={<SettingsService />} />
             <Route
               path="/settings/designation"
               element={<SettingsDesignation />}
