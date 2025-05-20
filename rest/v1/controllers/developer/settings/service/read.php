@@ -5,18 +5,18 @@ $conn = null;
 $conn = checkDbConnection();
 
 // make instance of classes or use the model
-$experience = new Experience($conn);
+$service = new Service($conn);
 
-if (array_key_exists("experienceid", $_GET)) {
-    $experienceid->experience_id = $_GET['experienceid'];
-    checkId($experience->experience_aid);
-    $query = checkReadById($experience);
+if (array_key_exists("serviceid", $_GET)) {
+    $serviceid->service_id = $_GET['serviceid'];
+    checkId($service->service_aid);
+    $query = checkReadById($service);
     http_response_code(200);
     getQueriedData($query);
 }
 
 if (empty($_GET)) {
-    $query = checkReadAll($experience);
+    $query = checkReadAll($service);
     http_response_code(200);
     getQueriedData($query);
 }

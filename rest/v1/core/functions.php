@@ -273,8 +273,18 @@ function checkExistence($count, $msg = '')
 
 function isTitleExist($object, $title)
 {
-    $query = $object->checkTitle();
-    $count = $query->rowCount();
+    $object->experience_title = $title; 
+    $stmt = $object->checkTitle();
+
+    if (!$stmt) {
+        http_response_code(500);
+        exit(json_encode([
+            'success' => false,
+            'error' => 'Failed to check title.'
+        ]));
+    }
+
+    $count = $stmt->rowCount();
     checkExistence($count, "{$title} title already exists.");
 }
 

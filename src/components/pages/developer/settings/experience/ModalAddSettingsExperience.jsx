@@ -1,17 +1,20 @@
 import React from "react";
-import ModalWrapperSide from "../../../../partials/modal/ModalWrapperSide";
+
 import { FaTimesCircle } from "react-icons/fa";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
-import { InputText, InputTextArea } from "../../../../custom-hooks/FormInputs";
-import { queryData } from "../../../../helper/queryData";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { StoreContext } from "../../../../../../store/StoreContext";
+
 import {
   setError,
   setMessage,
   setSuccess,
 } from "../../../../../../store/StoreAction";
+import ModalWrapperSide from "../../../../partials/modal/ModalWrapperSide";
+import { InputText, InputTextArea } from "../../../../custom-hooks/FormInputs";
+import { queryData } from "../../../../helper/queryData";
+import { StoreContext } from "../../../../../../store/StoreContext";
 
 const ModalAddSettingsExperience = ({ itemEdit, setIsModal }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -28,7 +31,7 @@ const ModalAddSettingsExperience = ({ itemEdit, setIsModal }) => {
         values
       ),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["experience"] });
+      queryClient.invalidateQueries({ queryKey: ["experience-list"] });
 
       if (!data.success) {
         dispatch(setMessage(data.error));
@@ -44,8 +47,7 @@ const ModalAddSettingsExperience = ({ itemEdit, setIsModal }) => {
   const initVal = {
     experience_title: itemEdit ? itemEdit.experience_title : "",
     experience_description: itemEdit ? itemEdit.experience_description : "",
-
-    experience_title_old: itemEdit ? itemEdit.experience_description : "",
+    experience_title_old: itemEdit ? itemEdit.experience_title : "",
   };
   const yupSchema = Yup.object({
     experience_title: Yup.string().required("required"),
@@ -65,9 +67,12 @@ const ModalAddSettingsExperience = ({ itemEdit, setIsModal }) => {
 
   return (
     <>
-      <ModalWrapperSide handleClose={handleClose} className={`${animate}`}>
+      <ModalWrapperSide
+        handleClose={handleClose}
+        className={`moodal ${animate}`}
+      >
         <div className="modal__header">
-          <h3>{itemEdit ? "Update" : "Add"} My Experience</h3>
+          <h3>{itemEdit ? "Update" : "Add"} Experience</h3>
           <button
             type="button"
             className="absolute top-0 right-0"
@@ -92,12 +97,13 @@ const ModalAddSettingsExperience = ({ itemEdit, setIsModal }) => {
                     <div className="forms">
                       <div className="relative mt-3 mb-5">
                         <InputText
-                          label="Name"
+                          label="Title"
                           type="text"
                           name="experience_title"
                           disabled={false}
                         />
                       </div>
+
                       <div className="relative mt-3 mb-5">
                         <InputTextArea
                           label="Description"

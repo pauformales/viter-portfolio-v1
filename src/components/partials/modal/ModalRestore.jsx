@@ -46,8 +46,8 @@ const ModalRestore = ({ endpoint, msg, successMsg, queryKey }) => {
     <>
       <div className="bg-dark/50 overflow-y-auto fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center">
         <div className="p-1 w-[350px]">
-          <div className="bg-white p-6 pt-10 text-center rounded-lg ">
-            <FaQuestion className="mx-auto my-2 animate-bounce h-11 w-11 text-red-600" />
+          <div className="bg-red-200 p-6 pt-10 text-center rounded-lg ">
+            <FaQuestion className="mx-auto my-2 animate-bounce h-11 w-11 text-primary" />
             <p className="text-sm pt-3 pb-5 text-primary">{msg}</p>
             <div className="flex items-center gap-1">
               <button

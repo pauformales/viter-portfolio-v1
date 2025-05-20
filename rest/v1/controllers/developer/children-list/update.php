@@ -30,7 +30,7 @@ if (array_key_exists('childrenListid', $_GET)) {
     // VALIDATION
     checkId($childrenList->children_list_aid);
 
-    compareName($childrenList, $fullname_new, $fullname_old);
+    // compareName($childrenList, $fullname_new, $fullname_old);
 
     $query = checkUpdate($childrenList);
     returnSuccess($childrenList, 'children list update', $query);

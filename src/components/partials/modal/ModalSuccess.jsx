@@ -24,7 +24,7 @@ const ModalSuccess = () => {
   return (
     <>
       <div
-        className={`fixed z-[99] top-10 left-1/2 -translate-x-1/2 flex items-center w-full max-w-sm p-4 mb-4 text-dark bg-white rounded-lg shadow-custom transform duration-200 ease-in-out ${animate}`}
+        className={`fixed z-[99] top-10 left-1/2 -translate-x-1/2 flex items-center w-full max-w-sm p-4 mb-4 text-dark bg-red-200 rounded-lg shadow-custom transform duration-200 ease-in-out ${animate}`}
       >
         <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg ">
           <svg

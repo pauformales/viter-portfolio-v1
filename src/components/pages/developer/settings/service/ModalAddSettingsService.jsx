@@ -1,17 +1,20 @@
 import React from "react";
-import ModalWrapperSide from "../../../../partials/modal/ModalWrapperSide";
+
 import { FaTimesCircle } from "react-icons/fa";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
-import { InputText, InputTextArea } from "../../../../custom-hooks/FormInputs";
-import { queryData } from "../../../../helper/queryData";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { StoreContext } from "../../../../../../store/StoreContext";
+
 import {
   setError,
   setMessage,
   setSuccess,
 } from "../../../../../../store/StoreAction";
+import ModalWrapperSide from "../../../../partials/modal/ModalWrapperSide";
+import { InputText, InputTextArea } from "../../../../custom-hooks/FormInputs";
+import { queryData } from "../../../../helper/queryData";
+import { StoreContext } from "../../../../../../store/StoreContext";
 
 const ModalAddSettingsService = ({ itemEdit, setIsModal }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -22,13 +25,13 @@ const ModalAddSettingsService = ({ itemEdit, setIsModal }) => {
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? `/rest/v1/controllers/developer/settings/experience/experience.php?experienceid=${itemEdit.experience_aid}`
-          : `/rest/v1/controllers/developer/settings/experience/experience.php`,
+          ? `/rest/v1/controllers/developer/settings/service/service.php?serviceid=${itemEdit.service_aid}`
+          : `/rest/v1/controllers/developer/settings/service/service.php`,
         itemEdit ? "PUT" : "POST",
         values
       ),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["experience"] });
+      queryClient.invalidateQueries({ queryKey: ["service-list"] });
 
       if (!data.success) {
         dispatch(setMessage(data.error));
@@ -42,14 +45,13 @@ const ModalAddSettingsService = ({ itemEdit, setIsModal }) => {
   });
 
   const initVal = {
-    experience_title: itemEdit ? itemEdit.experience_title : "",
-    experience_description: itemEdit ? itemEdit.experience_description : "",
-
-    experience_title_old: itemEdit ? itemEdit.experience_description : "",
+    service_title: itemEdit ? itemEdit.service_title : "",
+    service_description: itemEdit ? itemEdit.service_description : "",
+    service_title_old: itemEdit ? itemEdit.service_title : "",
   };
   const yupSchema = Yup.object({
-    experience_title: Yup.string().required("required"),
-    experience_description: Yup.string().required("required"),
+    service_title: Yup.string().required("required"),
+    service_description: Yup.string().required("required"),
   });
 
   const handleClose = () => {
@@ -65,9 +67,12 @@ const ModalAddSettingsService = ({ itemEdit, setIsModal }) => {
 
   return (
     <>
-      <ModalWrapperSide handleClose={handleClose} className={`${animate}`}>
+      <ModalWrapperSide
+        handleClose={handleClose}
+        className={`moodal ${animate}`}
+      >
         <div className="modal__header">
-          <h3>{itemEdit ? "Update" : "Add"} My Experience</h3>
+          <h3>{itemEdit ? "Update" : "Add"} Service</h3>
           <button
             type="button"
             className="absolute top-0 right-0"
@@ -92,17 +97,18 @@ const ModalAddSettingsService = ({ itemEdit, setIsModal }) => {
                     <div className="forms">
                       <div className="relative mt-3 mb-5">
                         <InputText
-                          label="Name"
+                          label="Title"
                           type="text"
-                          name="experience_title"
+                          name="service_title"
                           disabled={false}
                         />
                       </div>
+
                       <div className="relative mt-3 mb-5">
                         <InputTextArea
                           label="Description"
                           type="text"
-                          name="experience_description"
+                          name="service_description"
                           disabled={false}
                         />
                       </div>

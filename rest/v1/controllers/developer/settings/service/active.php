@@ -6,27 +6,27 @@ require '../../../../core/functions.php';
 
 
 // use model
-require '../../../../models/developer/settings/experience/Experience.php';
+require '../../../../models/developer/settings/service/Service.php';
 // check database conection
 $conn = null;
 $conn = checkDbConnection();
 // store model in variable
-$experience = new Experience($conn);
+$service = new Service($conn);
 // get payload
 $body = file_get_contents("php://input");
 $data = json_decode($body, true);
 // VALIDATE API KEY
 if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-    if (array_key_exists('experienceid', $_GET)) {
+    if (array_key_exists('serviceid', $_GET)) {
         // CHECK DATA
         checkPayload($data);
-        $experience->experience_aid = $_GET['experienceid'];
-        $experience->experience_is_active = trim($data['isActive']);
-        $experience->experience_updated = date('Y-m-d H:i:s');
+        $service->service_aid = $_GET['serviceid'];
+        $service->service_is_active = trim($data['isActive']);
+        $service->service_updated = date('Y-m-d H:i:s');
 
-        checkId($experience->experience_aid);
-        $query = checkActive($experience);
-        returnSuccess($experience, 'experience active', $query);
+        checkId($service->service_aid);
+        $query = checkActive($service);
+        returnSuccess($service, 'service active', $query);
     }
     // 404 if endpoint not available
     checkEndPoint();

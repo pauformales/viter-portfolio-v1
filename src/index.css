@@ -46,11 +46,11 @@
     @apply font-bold bg-primary py-2 px-3;
   }
   table td {
-    @apply px-3 py-2;
+    @apply px-3 py-2 text-white;
   }
   input,
   select {
-    @apply h-[35px] bg-primary border border-solid border-gray-300 p-2 rounded-lg w-full truncate bg-transparent outline-none;
+    @apply h-[35px] bg-primary border border-solid border-primary p-2 rounded-lg w-full truncate bg-transparent outline-none;
   }
   select {
     @apply text-xs h-[35px];
@@ -65,6 +65,9 @@
     @apply text-xs text-primary transform -translate-y-6 -translate-x-1 absolute left-3 top-4 px-1  z-10 isolate;
   }
   label:after {
+    @apply content-[''] w-[97%] h-[2.5px] absolute left-px top-[7.2px] bg-gray-500 -z-10;
+  }
+  .moodal label:after {
     @apply content-[''] w-[97%] h-[2.5px] absolute left-px top-[7.2px] bg-white -z-10;
   }
   input:disabled,
@@ -92,7 +95,7 @@
 
 @layer components {
   .wrapper {
-    @apply relative min-h-[calc(100dvh-60px)] print:!p-4 pt-[0.5rem] ml-48 px-6 transition-all ease-in duration-200 overflow-x-hidden;
+    @apply relative min-h-[calc(100dvh-60px)] print:!p-4 pt-[0.5rem] ml-48 px-6 transition-all ease-in duration-200 overflow-x-hidden bg-gray-500;
   }
   .btn-primary {
     @apply flex items-center justify-center text-sm text-primary gap-1 py-1 rounded-md hover:underline decoration-2 duration-300 ease-in;
@@ -157,7 +160,7 @@
     overflow-y-auto overflow-x-hidden;
   }
   .modal__header {
-    @apply relative my-4;
+    @apply relative my-4 text-primary;
   }
 }
 
