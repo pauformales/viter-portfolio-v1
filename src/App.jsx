@@ -2,10 +2,14 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { StoreProvider } from "../store/StoreContext";
-import DonorList from "./components/pages/developer/donor-list/DonorList";
-import ChildrenList from "./components/pages/developer/children-list/ChildrenList";
+
 import SettingsExperience from "./components/pages/developer/settings/experience/ExperienceList";
 import ServiceList from "./components/pages/developer/settings/service/ServiceList";
+import AboutList from "./components/pages/developer/about/AboutList";
+import RecentWorkList from "./components/pages/developer/recent-work/RecentWorkList";
+import MainServiceList from "./components/pages/developer/service/MainServiceList";
+import MainExperienceList from "./components/pages/developer/experience/MainExperienceList";
+import TestimonialsList from "./components/pages/developer/testimonials/TestimonialsList";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -23,14 +27,17 @@ export default function App() {
                 </div>
               }
             />
-            <Route path="/" element={<DonorList />} />
-            <Route path="/donor" element={<DonorList />} />
+
             <Route
               path="/settings/experience"
               element={<SettingsExperience />}
             />
+            <Route path="/services" element={<MainServiceList />} />
+            <Route path="/testimonials" element={<TestimonialsList />} />
+            <Route path="/experience" element={<MainExperienceList />} />
+            <Route path="/about" element={<AboutList />} />
+            <Route path="/recent-work" element={<RecentWorkList />} />
             <Route path="/settings/service" element={<ServiceList />} />
-            <Route path="/children-list" element={<ChildrenList />} />
           </Routes>
         </Router>
       </StoreProvider>
